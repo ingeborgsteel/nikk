@@ -1,0 +1,57 @@
+:root {
+    --card-color: #a24545; /* Blue color for primary actions */
+    --secondary-color: #a14242; /* Gray color for secondary elements */
+    --text-color: #212529; /* Dark color for main text */
+    --background-color: #4a0f0f; /* White background */
+}
+
+body{
+    background-color: var(--background-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    height: 80vh;
+    object-fit: contain;
+    margin-bottom: 10vh;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom:0;
+}
+
+.knapp {
+    background-color: var(--secondary-color);
+    border-radius: 30px;
+    padding: 0.5%;
+    margin-top: 2vh;
+    width: 4vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1em;
+    color: white;
+    font-family: "Prompt";
+    z-index: 9;
+}
+
+h1 {
+    margin-bottom: 4vh;
+    font-family: "Rubik Mono One";
+    font-size: 10em;
+    color: #fef7a8;
+    text-shadow:  0 0 5px #FFF163, 0 0 10px #FFF163;
+
+}

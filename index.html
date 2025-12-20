@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Prompt">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik+Mono+One">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+    <title>Julequiz</title>
+</head>
+<body>
+    <!--
+    <img class="kimsbilder" id="kimstart" src="kimstart.png">
+    <img class="kimsbilder" id="kimslutt" src="kimslutt.png">
+    <img class="kimsbilder" id="kimspause" src="pause.png"> -->
+
+    <div class="logo-div">
+        <img class="logo" src="krans.png">
+        <h1 class="title">Julequiz</h1>
+    </div>
+    <div class="wrapper">
+        <div id="myModal" class="modal">
+
+            <div class="modal-content" id="modal-content">
+              <span class="close">&times;</span>
+            </div>
+          
+        </div>
+<!--
+
+    <div id="modal-challenge" class="modal-challenge">
+        
+        <div id="modal-content-challenge">
+            <p class="challenge-tittel">Challenge</p>
+            <p class="challenge-name">Eksempel</p>
+            
+        </div>
+        
+    </div>
+-->
+
+        <div class="main">
+            
+            <div class="poeng-section">
+                <div class="lag-section">
+                  <p class="lag" id="navnlag1" onclick="editText('navnlag1')">Lag 1</p>
+                  <p class="poeng" id="lag1" onclick="editText('lag1')">0</p>
+                </div>
+                <div class="lag-section">
+                  <p class="lag" id="navnlag2" onclick="editText('navnlag2')">Lag 2</p>
+                  <p class="poeng" id="lag2" onclick="editText('lag2')">0</p>
+                </div>
+                <!--<div class="lag-section">
+                  <p class="lag" id="navnlag3" onclick="editText('navnlag3')">Lag 3</p>
+                  <p class="poeng" id="lag3" onclick="editText('lag3')"">0</p>
+                </div>
+                <div class="lag-section">
+                  <p class="lag" id="navnlag4" onclick="editText('navnlag4')">Lag 4</p>
+                  <p class="poeng" id="lag4" onclick="editText('lag4')"">0</p>
+                </div>-->
+            </div>
+
+            <div class="grid-section">
+                
+                <p class="kategori">Året 2025</p>
+                <p class="kategori">Julesangkrøll</p>
+                <p class="kategori">Ikoniske scener</p>
+                <p class="kategori">Skjermsanger</p>
+                <p class="kategori">Julequiz</p>
+                <div class="card" onclick="showPopup(this,1,100)">
+                    <p class="card-title">100</p>
+                </div>
+                <div class="card" onclick="showPopup(this,2,100)">
+                    <p class=card-title>100</p>
+                </div>
+                <div class="card" onclick="showPopup(this,3,100)">
+                    <p class=card-title>100</p>
+                </div>
+                <div class="card" onclick="showPopup(this,4,100)">
+                    <p class=card-title>100</p>
+                </div>
+                <div class="card" onclick="showPopup(this,5,100)">
+                    <p class=card-title>100</p>
+                </div>
+                <div class="card" onclick="showPopup(this,1,200)">
+                    <p class=card-title>200</p>
+                </div>
+                <div class="card" onclick="showPopup(this,2,200)">
+                    <p class=card-title>200</p>
+                </div>
+                <div class="card" onclick="showPopup(this,3,200)">
+                    <p class=card-title>200</p>
+                </div>
+                <div class="card" onclick="showPopup(this,4,200)">
+                    <p class=card-title>200</p>
+                </div>
+                <div class="card" onclick="showPopup(this,5,200)">
+                    <p class=card-title>200</p>
+                </div>
+                <div class="card" onclick="showPopup(this,1,300)">
+                    <p class=card-title>300</p>
+                </div>
+                <div class="card" onclick="showPopup(this,2,300)">
+                    <p class=card-title>300</p>
+                </div>
+                <div class="card" onclick="showPopup(this,3,300)">
+                    <p class=card-title>300</p>
+                </div>
+                <div class="card" onclick="showPopup(this,4,300)">
+                    <p class=card-title>300</p>
+                </div>
+                <div class="card" onclick="showPopup(this,5,300)">
+                    <p class=card-title>300</p>
+                </div>
+                <div class="card" onclick="showPopup(this,1,400)">
+                    <p class=card-title>400</p>
+                </div>
+                <div class="card" onclick="showPopup(this,2,400)">
+                    <p class=card-title>400</p>
+                </div>
+                <div class="card" onclick="showPopup(this,3,400)">
+                    <p class=card-title>400</p>
+                </div>
+                <div class="card" onclick="showPopup(this,4,400)">
+                    <p class=card-title>400</p>
+                </div>
+                <div class="card" onclick="showPopup(this,5,400)">
+                    <p class=card-title>400</p>
+                </div>
+                <div class="card" onclick="showPopup(this,1,500)">
+                    <p class=card-title>500</p>
+                </div>
+                <div class="card" onclick="showPopup(this,2,500)">
+                    <p class=card-title>500</p>
+                </div>
+                <div class="card" onclick="showPopup(this,3,500)">
+                    <p class=card-title>500</p>
+                </div>
+                <div class="card" onclick="showPopup(this,4,500)">
+                    <p class=card-title>500</p>
+                </div>
+                <div class="card" onclick="showPopup(this,5,500)">
+                    <p class=card-title>500</p>
+                </div>
+                
+            </div>
+            </div>
+            
+        </div>
+    </body>
+    <script>
+        var poengLag = [0, 0, 0, 0];
+        var currentPoints = 0;
+        var spmCounter = 0;
+
+        /*var challenges = {
+            5: "Kims lek",
+            10: "Telepati", 
+            15: "Speedrun",
+            20: "Mer eller mindre?"};*/
+        
+        var skaal = [12,18, 23];
+
+        var spmListe = [[
+            "Justin Trudeau trekker seg som Canadas statsminister og finner en ny flamme. Hvem?", 
+            "Hvem vant Grammy for Album of the Year?",
+            "Passordet til Louvres servere ble lekket i forbindelse med tyveriet av de franske kronjuvelene. Hva var passordet?",
+            "Paven dør i april, og en ny velges i mai. Hvilket navn tar den nye paven?",
+            "Charlie Kirk blir skutt og drept mens han besøker et college i hvilken amerikansk stat?"], [
+            "God jul<br>God jul<br>God jul<br>Godt nyttår og lykke til<br>Jeg vil ønske deg en god jul<br>Jeg vil ønske deg en god jul<br>Jeg vil ønske deg en god jul<br>Fra bunnen av mitt hjerte",
+            "Jeg ønsker meg ikke mye til jul<br>Det er bare én ting jeg trenger<br>Jeg bryr meg ikke om gavene<br>Under juletreet<br>Jeg vil bare ha deg for meg selv<br>Mer enn du noen gang kan vite<br>Gjør mitt ønske til virkelighet<br>Alt jeg ønsker meg til jul er deg, ja",
+            "Hvert år ber jeg om mange forskjellige ting<br>Men nå vet jeg hva hjertet mitt vil at du skal bringe<br>Så vær så snill, bare forelsk deg i meg denne julen<br>Det er ingenting annet jeg trenger denne julen<br>Som ikke vil bli pakket inn under et tre<br>Jeg vil ha noe som varer evig",
+            "Du er en uteligger, du er en punker, du er en gammel hore på søppel<br>Ligger der nesten død på et drypp i den sengen<br>Din drittsekk, din larve, din billige, elendige homofil<br>God jul, din rumpe, jeg ber Gud om at det er vår siste",
+            "Driving through salty snow for several kilometers queue<br>It's packing up over the Gorge, a gravel truck has overturned in the ditch<br>Today is the last workday for us who drive here in teams <br>But I'm getting closer now <br>Soon I'll see, my house at home where I come from<br>At home there's a guy standing, at the end of the hallway, waiting for his father<br>Grandmother wants to comfort, but she hasn't got an answer<br>For when dad comes back, comes back for Christmas"],[
+            "Hvilken scene og film?",
+            "Hvilken scene og film?",
+            "Hvilken scene og film?",
+            "Hvilken scene og film?",
+            "Hvilken scene og film?"],[
+            "Hvilken film eller julekalender?",
+            "Hvilken film eller julekalender?",
+            "Hvilken film eller julekalender?",
+            "Hvilken film eller julekalender?",
+            "Hvilken film eller julekalender?"],[
+            "Hvilken by sender Norge et juletre til hvert år?",
+            "Når er hellige tre kongers dag?",
+            "Hva er fornavnet til Scrooge i \"A Christmas Carol\"?",
+            "Nevn 3 av nissens reinsdyr",
+            "Hva drikker Grevinnen til kyllingen?"]];
+
+        var bildeListe = ["Bilde-2.png", "Bilde.png", "Bilde-3.png", "Bilde-4.png", "Bilde-5.png"]
+
+        var modal = document.getElementById("myModal");
+        var modalContent = document.getElementById("modal-content");
+        var span = document.getElementsByClassName("close")[0];
+        var modalChallenge = document.getElementById("modal-challenge");
+        var modalContentChallenge = document.getElementById("modal-content-challenge");
+        var modalName = document.getElementsByClassName("challenge-name")[0];
+        var modalTitle = document.getElementsByClassName("challenge-tittel")[0];
+        var questionDiv = document.createElement("div");
+
+        var navnlag1 = "Lag 1";
+        var navnlag2 = "Lag 2";
+        var navnlag3 = "Lag 3";
+        var navnlag4 = "Lag 4";
+
+
+        var buttonDiv = document.createElement("div");
+        buttonDiv.className = "button-div";
+        
+        var link = document.createElement("p");
+                link.setAttribute("onclick", "startKims()");
+                link.className = "link";
+                link.innerText = "Start";
+        
+
+        // When the user clicks on the button, open the modal
+        function showPopup(el, kat, spm) {
+            spmCounter ++;
+            /*if (spmCounter in challenges) {
+                displayChallenge(false)
+            } else*/ if (skaal.includes(spmCounter)) {
+                displayChallenge(true)
+            }
+
+            buttonDiv.innerHTML = '<button onclick="givePoints(0)" class="poengknapp">'+
+                    '<p class="button-tekst">'+navnlag1+'</p>'+
+                '</button>'+
+                '<button onclick="givePoints(1)" class="poengknapp">'+
+                   ' <p class="button-tekst">'+navnlag2+'</p>'+
+                '</button>'/*+
+                '<button onclick="givePoints(2)" class="poengknapp">'+
+                    '<p class="button-tekst">'+navnlag3+'</p>'+
+                '</button>'+
+                '<button onclick="givePoints(3)" class="poengknapp">'+
+                    '<p class="button-tekst">'+navnlag4+'</p>'+
+                '</button>'*/
+            
+            el.classList.add("ferdig");
+            el.setAttribute("onclick", "");
+            currentPoints = spm;
+            
+            modalContent.innerHTML="";
+            questionDiv.innerHTML="";
+
+            questionDiv.className = "question-div";
+            
+            var title = document.createElement("h1")
+            title.innerHTML = "Spørsmål " + spm/100;
+            title.className = "modal-title";
+            
+            var question = document.createElement("p")
+            question.innerHTML = spmListe[kat-1][(spm/100)-1];
+            question.className = "modal-question";
+            
+            questionDiv.appendChild(title);
+            questionDiv.appendChild(question);
+            
+            if (kat == 3) {
+                var bilde = document.createElement("img");
+                bilde.src = bildeListe[(spm/100)-1];
+                bilde.classList.add("spm-bilde");
+                questionDiv.appendChild(bilde);
+            }
+
+            modalContent.appendChild(questionDiv);
+            modalContent.appendChild(buttonDiv);
+            modal.style.display = "block";
+        }
+
+        function displayChallenge(skaal) {
+            if(skaal) {
+                modalContentChallenge.classList.remove("modal-content-challenge");
+                modalContentChallenge.classList.add("modal-skaal");
+                modalTitle.classList.add("modal-skaal-tittel");
+                modalTitle.classList.remove("challenge-tittel");
+                modalTitle.innerHTML = "SKÅL!";
+                modalName.innerHTML = "<img class='skaal-img' src='nikk.png'>";
+            } else {
+                modalTitle.classList.add("challenge-tittel");
+                modalTitle.classList.remove("modal-skaal-tittel");
+                modalContentChallenge.classList.remove("modal-skaal");
+                modalContentChallenge.classList.add('modal-content-challenge')
+                modalTitle.innerHTML = "Challenge";
+                modalName.innerHTML = challenges[spmCounter];
+            }
+
+            if (spmCounter == 5){
+                modalContentChallenge.appendChild(link)
+            }
+
+            modalChallenge.style.display = "block";
+            
+        }
+
+        function startKims() {
+            modalContentChallenge.removeChild(link);
+            var start = document.getElementById("kimstart");
+            var slutt = document.getElementById("kimslutt");
+            var pause = document.getElementById("kimspause");
+            start.style.display = "block";
+            setTimeout(()=> {
+                start.style.display = "none";
+                pause.style.display = "block"
+            }, 20000)
+
+            setTimeout(() => {
+                pause.style.display = "none";
+                slutt.style.display = "block";
+            }, 23000)
+        }
+
+        function givePoints(lag) {
+            poengLag[lag] += currentPoints;
+            var id = "lag" + (lag+1);
+            var score = document.getElementById(id);
+            score.innerHTML = poengLag[lag];
+            modal.style.display = "none";
+        }        
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            } else if (event.target == modalChallenge) {
+                modalChallenge.style.display = "none";
+                document.getElementById("kimslutt").style.display = "none";
+            }
+
+        }
+
+        function editText(id) {
+            var lagElement = document.getElementById(id);
+
+            var isEditing = lagElement.getAttribute('contenteditable') === 'true';
+
+            if (isEditing) {
+                lagElement.setAttribute('contenteditable', 'false');
+                window[id] = lagElement.innerText;
+
+            } else {
+                lagElement.setAttribute('contenteditable', 'true');
+                lagElement.focus();
+            }
+        }
+</script>
+</html>
