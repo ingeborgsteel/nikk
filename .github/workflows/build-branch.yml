@@ -1,0 +1,25 @@
+name: Build and merge branch
+run-name: "[Build and merge to develop] ${{ github.event.pull_request.title || github.event.head_commit.message}}"
+
+on:
+  push:
+    branches-ignore:
+      - release
+      - stage
+      - develop
+
+permissions:
+  id-token: write
+  contents: write
+  actions: write
+
+env:
+  CONVOX_DOCKER_ARTIFACT: containers.artifactory.schibsted.io/snoam/${{ vars.APP }}:${{ github.sha }}
+
+jobs:
+  merge-to-develop:
+    name: Merge to develop
+    if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/bug/')
+    needs:
+      - build
+    uses: ./.github/workflows/merge-to-develop.yml

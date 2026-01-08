@@ -1,0 +1,45 @@
+name: Merge to develop
+
+on:
+  workflow_call:
+
+permissions:
+  id-token: write
+  contents: write
+  actions: write
+
+jobs:
+  merge-to-develop:
+    name: Merge to develop
+    runs-on: [ self-hosted, ubuntu-latest-no-docker, developer-foundations ]
+    steps:
+      - run: echo "Merging ${{ github.ref_name }} to develop..."
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Check if branch is already merged
+        id: is-merged
+        run: |
+          git fetch origin develop
+          if git merge-base --is-ancestor ${{ github.ref_name }} origin/develop; then
+            echo "Branch already merged to develop with no diff. Skipping remaining steps."
+            echo "skip_merge=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Merge to develop
+        id: merge-to-develop
+        if: steps.is-merged.outputs.skip_merge != 'true'
+        run: |
+          git --version
+          git config --global user.name  "$(git log -n1 --pretty=format:'%an')"
+          git config --global user.email "$(git log -n1 --pretty=format:'%ae')"
+          git checkout develop
+          git merge --no-ff --no-edit "${{ github.ref_name }}"
+          git push
+      - name: Login GH CLI tool
+        if: steps.is-merged.outputs.skip_merge != 'true'
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --hostname ${GITHUB_SERVER_URL/https:\/\//} --with-token
+      - name: Trigger GitHub actions workflow for develop
+        if: steps.is-merged.outputs.skip_merge != 'true'
+        run: |
+          gh workflow run build-and-deploy.yml --ref develop -f merge-branch="'${{ github.ref_name }}'"

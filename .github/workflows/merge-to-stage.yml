@@ -1,0 +1,55 @@
+name: Merge to stage after approval
+run-name: "[Merge to stage] ${{ github.event.pull_request.title}}"
+
+on:
+  pull_request_target:
+
+permissions:
+  id-token: write
+  contents: write
+  actions: write
+
+jobs:
+  merge-to-stage:
+    name: Merge to stage after approval
+    environment: merge-to-stage
+    runs-on: [ self-hosted, ubuntu-latest-no-docker, developer-foundations ]
+    steps:
+      - id: set-vars
+        name: Set branch name
+        run: echo "branch_name=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Check if branch is already merged
+        id: is-merged
+        run: |
+          git fetch origin stage
+          git fetch origin ${{ steps.set-vars.outputs.branch_name }}
+          if git merge-base --is-ancestor origin/${{ steps.set-vars.outputs.branch_name }} origin/stage; then
+            echo "Branch already merged to stage with no diff. Skipping remaining steps."
+            echo "skip_merge=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Merge to stage
+        id: merge-to-stage
+        if: steps.is-merged.outputs.skip_merge != 'true'
+        run: |
+          git --version
+          git config --global user.name  "$(git log -n1 --pretty=format:'%an')"
+          git config --global user.email "$(git log -n1 --pretty=format:'%ae')"
+          git checkout stage
+          git fetch origin ${{ steps.set-vars.outputs.branch_name }}
+          git merge --no-ff --no-edit origin/"${{ steps.set-vars.outputs.branch_name }}"
+          git push
+      - name: Login GH CLI tool
+        if: steps.is-merged.outputs.skip_merge != 'true'
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --hostname ${GITHUB_SERVER_URL/https:\/\//} --with-token
+      - name: Trigger GitHub actions workflow for stage
+        if: steps.is-merged.outputs.skip_merge != 'true'
+        run: |
+          gh workflow run build-and-deploy.yml --ref stage -f merge-branch="'${{ steps.set-vars.outputs.branch_name }}'"
+      - name: Tag pull request
+        if: steps.is-merged.outputs.skip_merge != 'true'
+        run: |
+          gh pr edit ${{ github.event.pull_request.number }} --add-label "in stage"
