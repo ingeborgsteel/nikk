@@ -45,10 +45,6 @@ jobs:
       - name: Login GH CLI tool
         if: steps.is-merged.outputs.skip_merge != 'true'
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --hostname ${GITHUB_SERVER_URL/https:\/\//} --with-token
-      - name: Trigger GitHub actions workflow for stage
-        if: steps.is-merged.outputs.skip_merge != 'true'
-        run: |
-          gh workflow run build-and-deploy.yml --ref stage -f merge-branch="'${{ steps.set-vars.outputs.branch_name }}'"
       - name: Tag pull request
         if: steps.is-merged.outputs.skip_merge != 'true'
         run: |
