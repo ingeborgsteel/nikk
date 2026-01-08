@@ -13,7 +13,7 @@ jobs:
   merge-to-stage:
     name: Merge to stage after approval
     environment: merge-to-stage
-    runs-on: [ self-hosted, ubuntu-latest-no-docker, developer-foundations ]
+    runs-on: ubuntu-latest
     steps:
       - id: set-vars
         name: Set branch name
