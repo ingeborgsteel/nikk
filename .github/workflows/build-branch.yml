@@ -20,6 +20,4 @@ jobs:
   merge-to-develop:
     name: Merge to develop
     if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/bug/')
-    needs:
-      - build
     uses: ./.github/workflows/merge-to-develop.yml
