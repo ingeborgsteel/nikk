@@ -6,7 +6,3 @@ igjen
 
 
 oooookei
-
-?
-
-?
