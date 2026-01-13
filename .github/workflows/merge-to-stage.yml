@@ -10,6 +10,10 @@ permissions:
   actions: write
   pull-requests: write
 
+concurrency:
+  group: "merge-to-stage-${{ github.event.pull_request.number }}"
+  cancel-in-progress: true
+
 jobs:
   merge-to-stage:
     name: Merge to stage after approval
